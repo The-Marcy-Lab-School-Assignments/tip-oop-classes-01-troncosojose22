@@ -14,9 +14,15 @@ class Task {
         this.title = title;
         this.priority = priority;
         
-        Task.allTasks.push(title);
+        Task.allTasks.push(this);
+    }
+    get completedStatus() {
+        return this.#completed;
     }
 
+    get timeSpent() {
+        return this.#minutesSpent;
+    }
     workOn(minutes) {
         this.#minutesSpent += minutes;
         console.log(`Worked on ${this.title} for ${minutes} minutes. Total time: ${this.#minutesSpent} minutes`)
@@ -36,7 +42,7 @@ class Task {
     }
 
     static findByTitle(title) {
-       return  Task.allTasks[Task.allTasks.indexOf(title)];
+       return  Task.allTasks[Task.allTasks.findIndex((task) => task.title == title)];
     }
 }
 
