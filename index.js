@@ -6,7 +6,38 @@
 
 class Task {
  //write your code here
- 
+    static allTasks = []
+    #completed = false;
+    #minutesSpent = 0;
+
+    constructor(title, priority) {
+        this.title = title;
+        this.priority = priority;
+        
+        Task.allTasks.push(title);
+    }
+
+    workOn(minutes) {
+        this.#minutesSpent += minutes;
+        console.log(`Worked on ${this.title} for ${minutes} minutes. Total time: ${this.#minutesSpent} minutes`)
+    }
+
+    complete() {
+        this.#completed = true;
+        console.log(`${this.title} has been completed!`)
+    }
+
+    isComplete() {
+        return this.#completed;
+    }
+
+    static getTotalTasks() {
+        return Task.allTasks.length;
+    }
+
+    static findByTitle(title) {
+       return  Task.allTasks[Task.allTasks.indexOf(title)];
+    }
 }
 
 //Test class with examples below:
